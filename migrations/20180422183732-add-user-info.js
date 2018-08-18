@@ -27,12 +27,12 @@ module.exports = {
 
       first_name: {
         type: Sequelize.STRING(255),
-        allowNull: false,
+        allowNull: true,
       },
 
       last_name: {
         type: Sequelize.STRING(255),
-        allowNull: false,
+        allowNull: true,
       },
 
       phone_number: {

@@ -28,18 +28,10 @@ import createFetch from './createFetch';
 import passport from './passport';
 import router from './router';
 import models from './data/models';
-import schema from './data/schema';
 import assets from './assets.json'; // eslint-disable-line import/no-unresolved
 import configureStore from './store/configureStore';
 import { setRuntimeVariable } from './actions/runtime';
 import config from './config';
-import Price from './data/models/Price';
-import DailyPrice from './data/models/DailyPrice';
-import MarketCap from './data/models/MarketCap';
-const COINBASE_URL = 'https://www.coinbase.com/api/v2/prices/';
-const ALPHAVANTAGE_URL = 'https://www.alphavantage.co/';
-const COINMARKETCAP_URL = 'https://api.coinmarketcap.com/v1/ticker/';
-const GOOGLE_FINANCE_API = 'https://finance.google.com/finance?output=json&q=';
 import _ from 'lodash';
 import uuid from 'aguid';
 import { Strategy as LocalStrategy } from 'passport-local';
@@ -77,19 +69,6 @@ app.get('/profile', passport.authenticate('jwt', { session: false }), function(
 ) {
   res.json(req.user);
 });
-
-//
-// Register API middleware
-// -----------------------------------------------------------------------------
-app.use(
-  '/graphql',
-  expressGraphQL(req => ({
-    schema,
-    graphiql: __DEV__,
-    rootValue: { request: req },
-    pretty: __DEV__,
-  })),
-);
 
 //
 // Register server-side rendering middleware

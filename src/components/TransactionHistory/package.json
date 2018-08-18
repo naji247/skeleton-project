@@ -1,6 +1,0 @@
-{
-  "name": "TransactionHistory",
-  "version": "0.0.0",
-  "private": true,
-  "main": "./TransactionHistory.js"
-}

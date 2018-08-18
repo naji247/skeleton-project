@@ -37,12 +37,12 @@ const User = Model.define(
 
     first_name: {
       type: DataType.STRING(255),
-      allowNull: false,
+      allowNull: true,
     },
 
     last_name: {
       type: DataType.STRING(255),
-      allowNull: false,
+      allowNull: true,
     },
 
     phone_number: {
