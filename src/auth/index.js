@@ -46,23 +46,11 @@ const authenticate = (req, res, err, user, info) => {
 
 auth.post('/signup', async function(req, res, next) {
   const {
-    firstName,
-    lastName,
     email,
     password,
-    phoneNumber,
-    country
   } = req.body;
 
   var errorMessage = [];
-  if (!firstName) {
-    errorMessage.push('Missing first name.');
-  }
-
-  if (!lastName) {
-    errorMessage.push('Missing last name.');
-  }
-
   if (!email) {
     errorMessage.push('Missing email.');
   }
@@ -70,10 +58,6 @@ auth.post('/signup', async function(req, res, next) {
   if (!password) {
     errorMessage.push('Missing password.');
   }
-
-  // if (!phoneNumber) {
-  //   errorMessage.push('Missing phone number.');
-  // }
 
   if (errorMessage.length > 0) {
     return res.status(400).json({
@@ -84,11 +68,8 @@ auth.post('/signup', async function(req, res, next) {
   try {
     let hashedPassword = await bcrypt.hash(password, 10);
     let user = User.build({
-      first_name: firstName,
-      last_name: lastName,
       email: email,
       password: hashedPassword,
-      phone_number: phoneNumber,
       created_at: moment(),
       updated_at: moment()
     });
