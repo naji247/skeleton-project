@@ -1,0 +1,54 @@
+/**
+ * React Starter Kit (https://www.reactstarterkit.com/)
+ *
+ * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
+
+@import '../../components/variables.css';
+
+/* Use !important because MaterialUI is an unextensible piece of crap. */
+th {
+  font-weight: bold !important;
+  text-align: center !important;
+  color: var(--text-color-black) !important;
+  font-size: 0.8em !important;
+  padding: 0 !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+}
+
+td {
+  text-align: center !important;
+  font-weight: lighter !important;
+  color: var(--text-color-black) !important;
+  font-size: 0.9em !important;
+  padding: 0 !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+}
+
+.tableContainer {
+  margin: auto;
+  width: 85%;
+  text-align: center;
+  font-family: var(--font-family-base);
+}
+
+.titleRow {
+  background-color: var(--title-row-color);
+  height: 36px !important;
+}
+
+.tableHeader {
+  font-size: 18pt;
+  font-weight: normal;
+}
+
+.tableSubHeader {
+  color: var(--text-color-black);
+  font-size: 1em;
+  font-weight: normal;
+}

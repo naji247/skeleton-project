@@ -1,0 +1,44 @@
+/**
+ * React Starter Kit (https://www.reactstarterkit.com/)
+ *
+ * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
+@import '../variables.css';
+
+.container {
+  margin: 1% 12%;
+  padding: 1% 0 1%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.transferButton {
+  background: linear-gradient(to right, #055ea8, #086ec3, #0c80e0, #50a5eb);
+  font-size: 1.2em;
+  width: 30%;
+  padding: 0.3em 0;
+  text-align: center;
+  box-shadow: 0 5px 20px -5px #b4b5b5;
+  border-radius: 0.6em;
+  margin-left: 12%;
+  color: var(--text-color-white);
+  font-weight: 200;
+}
+
+.depositButton {
+  background: linear-gradient(to left, #055ea8, #086ec3, #0c80e0, #50a5eb);
+  background-color: #c0ffee;
+  font-size: 1.2em;
+  width: 30%;
+  padding: 0.3em 0;
+  text-align: center;
+  box-shadow: 0 5px 20px -5px #b4b5b5;
+  border-radius: 0.6em;
+  margin-right: 12%;
+  color: var(--text-color-white);
+  font-weight: 200;
+}
