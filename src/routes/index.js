@@ -17,42 +17,30 @@ const routes = {
   children: [
     {
       path: '',
-      load: () => import(/* webpackChunkName: 'home' */ './home'),
+      load: () => import(/* webpackChunkName: 'home' */ './home')
     },
     {
       path: '/contact',
-      load: () => import(/* webpackChunkName: 'contact' */ './contact'),
+      load: () => import(/* webpackChunkName: 'contact' */ './contact')
     },
     {
       path: '/login',
-      load: () => import(/* webpackChunkName: 'login' */ './login'),
+      load: () => import(/* webpackChunkName: 'login' */ './login')
     },
     {
       path: '/signup',
-      load: () => import(/* webpackChunkName: 'signup' */ './signup'),
-    },
-    {
-      path: '/about',
-      load: () => import(/* webpackChunkName: 'about' */ './about'),
-    },
-    {
-      path: '/account',
-      load: () => import(/* webpackChunkName: 'about' */ './account'),
-    },
-    {
-      path: '/accounts',
-      load: () => import(/* webpackChunkName: 'accounts' */ './accounts'),
+      load: () => import(/* webpackChunkName: 'signup' */ './signup')
     },
     {
       path: '/admin',
-      load: () => import(/* webpackChunkName: 'admin' */ './admin'),
+      load: () => import(/* webpackChunkName: 'admin' */ './admin')
     },
 
     // Wildcard routes, e.g. { path: '(.*)', ... } (must go last)
     {
       path: '(.*)',
-      load: () => import(/* webpackChunkName: 'not-found' */ './not-found'),
-    },
+      load: () => import(/* webpackChunkName: 'not-found' */ './not-found')
+    }
   ],
 
   async action({ next }) {
@@ -64,14 +52,14 @@ const routes = {
     route.description = route.description || '';
 
     return route;
-  },
+  }
 };
 
 // The error page is available by permanent url for development mode
 if (__DEV__) {
   routes.children.unshift({
     path: '/error',
-    action: require('./error').default,
+    action: require('./error').default
   });
 }
 
