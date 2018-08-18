@@ -15,21 +15,9 @@ import Navigation from '../Navigation';
 import logoUrl from './logo-small.png';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { formatPrice } from '../../routes/home/Home';
 
 class Header extends React.Component {
   render() {
-    var bitcoinPrice = '...';
-    var tetherPrice = '...';
-    const prices = this.props.prices;
-    const btcObj = _.find(prices, priceObj => priceObj.ticker === 'BTC');
-    const usdtObj = _.find(prices, priceObj => priceObj.ticker === 'USDT');
-    if (btcObj && btcObj.latest) {
-      bitcoinPrice = formatPrice(btcObj.latest);
-    }
-    if (usdtObj && usdtObj.latest) {
-      tetherPrice = formatPrice(usdtObj.latest);
-    }
     return (
       <div className={s.root}>
         <div className={s.container}>
@@ -43,33 +31,13 @@ class Header extends React.Component {
             />
             <span className={s.brandTxt}>SCX</span>
           </Link>
-          <div className={s.banner}>
-            <div className={s.pricesContainer}>
-              <div className={s.price}>
-                <span className={s.bannerTitle}>{bitcoinPrice}</span>
-                <span className={s.ticker}>Bitcoin</span>
-              </div>
-              <div className={s.price}>
-                <span className={s.bannerTitle}>{tetherPrice}</span>
-                <span className={s.ticker}>Tether</span>
-              </div>
-            </div>
-            <div className={s.bannerDescContainer}>
-              <p className={s.bannerDesc}>Volatility is not your friend.</p>
-              <p className={s.bannerDesc}>
-                Take back control of your wealth with stable coins.
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     );
   }
 }
 
-const mapState = state => ({
-  ...state.price,
-});
+const mapState = state => ({});
 
 const mapDispatch = {};
 

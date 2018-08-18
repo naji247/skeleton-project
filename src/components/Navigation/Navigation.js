@@ -26,12 +26,6 @@ class Navigation extends React.Component {
   render() {
     return (
       <div className={s.root} role="navigation">
-        <Link className={s.link} to="/">
-          Analytics
-        </Link>
-        <Link className={s.link} to="/about">
-          About
-        </Link>
         {this.props.token
           ? [
               <Link className={s.link} to="/accounts">
@@ -43,7 +37,7 @@ class Navigation extends React.Component {
                 onClick={event => this.onLogoutClick(event)}
               >
                 Logout
-              </Link>,
+              </Link>
             ]
           : [
               <Link className={s.link} to="/login">
@@ -51,7 +45,7 @@ class Navigation extends React.Component {
               </Link>,
               <Link className={s.link} to="/signup">
                 Sign Up
-              </Link>,
+              </Link>
             ]}
 
         {/* <Link className={s.link} to="/trade">
@@ -71,7 +65,7 @@ class Navigation extends React.Component {
 }
 
 const mapState = state => ({
-  token: state.userState.token,
+  token: state.userState.token
 });
 
 const mapDispatch = { logout };

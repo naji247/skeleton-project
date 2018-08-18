@@ -21,31 +21,20 @@ import Shake from 'react-reveal/Shake';
 
 class Signup extends React.Component {
   state = {
-    firstName: '',
-    lastName: '',
     email: '',
     password: '',
     confirmPassword: '',
-    signupAttempts: 0,
+    signupAttempts: 0
   };
 
   componentWillMount() {
     this.setState({
-      firstName: '',
-      lastName: '',
       email: '',
       password: '',
       confirmPassword: '',
       signupAttempts: 0,
-      validationIssues: undefined,
+      validationIssues: undefined
     });
-  }
-
-  handleFirstNameChange(event) {
-    this.setState({ firstName: event.target.value });
-  }
-  handleLastNameChange(event) {
-    this.setState({ lastName: event.target.value });
   }
 
   handleEmailChange(event) {
@@ -61,62 +50,40 @@ class Signup extends React.Component {
   }
 
   onSignupClick() {
-    const {
-      firstName,
-      lastName,
-      email,
-      password,
-      confirmPassword,
-      signupAttempts,
-    } = this.state;
+    const { email, password, confirmPassword, signupAttempts } = this.state;
     const { signup } = this.props;
 
     const signupConstraints = {
-      firstName: {
-        presence: true,
-        length: {
-          minimum: 1,
-          message: 'must not be empty.',
-        },
-      },
-      lastName: {
-        presence: true,
-        length: {
-          minimum: 1,
-          message: 'must not be empty.',
-        },
-      },
-
       email: {
         presence: true,
         email: {
-          message: 'does not seem valid.',
-        },
+          message: 'does not seem valid.'
+        }
       },
       password: {
         presence: true,
         length: {
           minimum: 6,
-          message: 'must be at least 6 characters.',
-        },
+          message: 'must be at least 6 characters.'
+        }
       },
       confirmPassword: {
-        equality: 'password',
-      },
+        equality: 'password'
+      }
     };
     const validationIssues = validate(
-      { firstName, lastName, email, password, confirmPassword },
-      signupConstraints,
+      { email, password, confirmPassword },
+      signupConstraints
     );
     this.setState({
-      validationIssues: validationIssues,
+      validationIssues: validationIssues
     });
     if (!validationIssues) {
-      signup(firstName, lastName, email, password);
+      signup(email, password);
     } else {
       this.setState({
         signupAttempts: signupAttempts + 1,
-        validationIssues: { ...validationIssues, server: [] },
+        validationIssues: { ...validationIssues, server: [] }
       });
     }
   }
@@ -136,8 +103,6 @@ class Signup extends React.Component {
 
   signupDisabled() {
     return (
-      this.state.firstName.length < 1 ||
-      this.state.lastName.length < 1 ||
       this.state.email.length < 3 ||
       this.state.password.length < 3 ||
       this.state.confirmPassword.length < 3
@@ -162,35 +127,6 @@ class Signup extends React.Component {
           <Shake
             spy={this.state.signupAttempts + this.props.serverSignupAttempts}
           >
-            <div className={s.formGroup}>
-              <label className={s.label} htmlFor="first-name">
-                <input
-                  className={s.input}
-                  id="signup-first-name"
-                  value={this.state.firstName}
-                  placeholder="First Name"
-                  onChange={event => this.handleFirstNameChange(event)}
-                  type="text"
-                  name="first-name"
-                  autoFocus // eslint-disable-line jsx-a11y/no-autofocus
-                />
-              </label>
-            </div>
-
-            <div className={s.formGroup}>
-              <label className={s.label} htmlFor="last-name">
-                <input
-                  className={s.input}
-                  id="signup-last-name"
-                  value={this.state.lastName}
-                  placeholder="Last Name"
-                  onChange={event => this.handleLastNameChange(event)}
-                  type="text"
-                  name="last-name"
-                />
-              </label>
-            </div>
-
             <div className={s.formGroup}>
               <label className={s.label} htmlFor="email">
                 <input
@@ -254,12 +190,12 @@ class Signup extends React.Component {
 const mapState = state => ({
   error: state.userState.signupError,
   loading: state.userState.isLoadingSignup,
-  serverSignupAttempts: state.userState.serverSignupAttempts,
+  serverSignupAttempts: state.userState.serverSignupAttempts
 });
 
 const mapDispatch = {
   signup,
-  logout,
+  logout
 };
 
 export default connect(mapState, mapDispatch)(withStyles(s)(Signup));
