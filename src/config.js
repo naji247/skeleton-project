@@ -31,7 +31,7 @@ module.exports = {
 
   // Database
   // TODO: Get database man...
-  databaseName: 'stable_dashboard',
+  databaseName: 'generic_db',
   databasePort: 32768,
   databaseUser: 'postgres',
   databasePassword: process.env.DATABASE_PASSWORD,

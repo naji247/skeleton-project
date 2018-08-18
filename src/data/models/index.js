@@ -9,11 +9,10 @@
 
 import sequelize from '../sequelize';
 import User from './User';
-import Price from './Price';
 
 function sync(...args) {
   return sequelize.sync(...args);
 }
 
 export default { sync };
-export { User, Price };
+export { User };

@@ -29,7 +29,7 @@ USER postgres
 #       allows the RUN command to span multiple lines.
 RUN    /etc/init.d/postgresql start &&\
     psql --command "CREATE USER admin WITH SUPERUSER PASSWORD 'admin';" &&\
-    createdb -O admin stable_dashboard
+    createdb -O admin generic_db
 
 # Adjust PostgreSQL configuration so that remote connections to the
 # database are possible.

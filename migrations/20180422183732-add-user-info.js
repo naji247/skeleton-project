@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) =>
-    queryInterface.createTable('User', {
+    queryInterface.createTable('user', {
       id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUID,
@@ -20,37 +20,35 @@ module.exports = {
         unique: true,
       },
 
-      emailConfirmed: {
+      email_confirmed: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
       },
 
-      firstName: {
+      first_name: {
         type: Sequelize.STRING(255),
         allowNull: false,
       },
 
-      lastName: {
+      last_name: {
         type: Sequelize.STRING(255),
         allowNull: false,
       },
 
-      phoneNumber: {
+      phone_number: {
         type: Sequelize.STRING(20),
       },
 
-      country: {
-        type: Sequelize.STRING(255),
-      },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      updatedAt: {
+
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },
     }),
 
-  down: (queryInterface, Sequelize) => queryInterface.dropTable('User'),
+  down: (queryInterface, Sequelize) => queryInterface.dropTable('user'),
 };

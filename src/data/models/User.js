@@ -49,10 +49,6 @@ const User = Model.define(
       type: DataType.STRING(20),
     },
 
-    country: {
-      type: DataType.STRING(255),
-    },
-
     createdAt: {
       type: DataType.DATE,
       field: 'created_at',
