@@ -32,7 +32,7 @@ export function loginError(error) {
 }
 
 export function logout() {
-  if (store.get('scx_token')) store.remove('scx_token');
+  if (store.get('auth_token')) store.remove('auth_token');
   return {
     type: constants.LOGOUT,
   };
@@ -42,7 +42,7 @@ export function login(email, password) {
   return async dispatch => {
     dispatch(loginStart());
     // TODO: Add long term storage
-    if (store.get('scx_token')) store.remove('scx_token');
+    if (store.get('auth_token')) store.remove('auth_token');
     try {
       const response = await request
         .post({
@@ -55,7 +55,7 @@ export function login(email, password) {
         });
       // TODO: Add long term storage
       const { exp } = jwt.decode(response.token);
-      store.set('scx_token', response.token, new Date(exp * 1000));
+      store.set('auth_token', response.token, new Date(exp * 1000));
       dispatch(loginDone(response));
       history.push('/');
     } catch (error) {
@@ -84,11 +84,11 @@ export function signupError(error) {
   };
 }
 
-export function signup(firstName, lastName, email, password) {
+export function signup(email, password) {
   return async dispatch => {
     dispatch(signupStart());
     // TODO: Add long term storage
-    if (store.get('scx_token')) store.remove('scx_token');
+    if (store.get('auth_token')) store.remove('auth_token');
     try {
       const response = await request
         .post({
@@ -96,14 +96,12 @@ export function signup(firstName, lastName, email, password) {
           json: true,
         })
         .form({
-          firstName,
-          lastName,
           email,
           password,
         });
       // TODO: Add long term storage
       const { exp } = jwt.decode(response.token);
-      store.set('scx_token', response.token, new Date(exp * 1000));
+      store.set('auth_token', response.token, new Date(exp * 1000));
       dispatch(signupDone(response));
       history.push('/');
     } catch (error) {

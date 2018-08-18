@@ -60,7 +60,7 @@ class App extends React.PureComponent {
 
   componentDidMount() {
     const { dispatch } = this.props.context.store;
-    const sessionStoredToken = storage.get('scx_token');
+    const sessionStoredToken = storage.get('auth_token');
     if (sessionStoredToken) {
       dispatch(hydrateAuth(sessionStoredToken));
     } else {

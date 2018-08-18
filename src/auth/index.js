@@ -8,11 +8,6 @@ import User from '../data/models/User';
 import moment from 'moment';
 import bcrypt from 'bcrypt';
 import _ from 'lodash';
-import bip39 from 'bip39';
-import walletjs from 'ethereumjs-wallet/hdkey';
-import Wallet from '../data/models/Wallet';
-import * as kmsUtil from '../kmsUtils';
-import crypto from 'crypto-js';
 
 /* POST login. */
 
@@ -99,37 +94,6 @@ auth.post('/signup', async function(req, res, next) {
     });
 
     const newUser = await user.save();
-
-    try {
-      const userId = newUser.id;
-      const walletSeed = bip39.generateMnemonic();
-      const hdWallet = walletjs.fromMasterSeed(walletSeed);
-      const normalWallet = hdWallet.getWallet();
-
-      const unencryptedPublicKey = normalWallet.getPublicKey();
-      const unencryptedPrivateKey = normalWallet.getPrivateKey();
-      const unencryptedWalletAddress = normalWallet.getAddress();
-
-      const kmsEncryptedPublicKey = await kmsUtil.encrypt(
-        unencryptedPublicKey.toString('hex')
-      );
-      const kmsEncryptedPrivateKey = await kmsUtil.encrypt(
-        unencryptedPrivateKey.toString('hex')
-      );
-      const kmsEncryptedWalletAddress = await kmsUtil.encrypt(
-        unencryptedWalletAddress.toString('hex')
-      );
-
-      const writtenWallet = await Wallet.create({
-        user_id: userId,
-        public_key: kmsEncryptedPublicKey.toString('base64'),
-        private_key: kmsEncryptedPrivateKey.toString('base64'),
-        address: kmsEncryptedWalletAddress.toString('base64')
-      });
-    } catch (walletError) {
-      await newUser.destroy({ force: true });
-      throw new Error('Failed to create user. (Error code 142388)');
-    }
 
     await authenticate(req, res, null, newUser, null);
   } catch (err) {

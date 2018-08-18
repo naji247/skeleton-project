@@ -19,7 +19,7 @@ import store from '../../storeUtil';
 class Navigation extends React.Component {
   onLogoutClick(event) {
     // TODO: Add long term storage
-    if (store.get('scx_token')) store.remove('scx_token');
+    if (store.get('auth_token')) store.remove('auth_token');
     this.props.logout();
   }
 
