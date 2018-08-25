@@ -6,7 +6,7 @@ export const auth = express.Router();
 import config from '../config';
 import User from '../data/models/User';
 import moment from 'moment';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import _ from 'lodash';
 
 /* POST login. */
