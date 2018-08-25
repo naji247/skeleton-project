@@ -16,6 +16,7 @@
     "@babel/polyfill": "7.0.0-beta.36",
     "aguid": "^2.0.0",
     "aws-sdk": "^2.234.1",
+    "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "classnames": "^2.2.5",
